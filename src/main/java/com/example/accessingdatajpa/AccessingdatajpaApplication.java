@@ -4,6 +4,7 @@ import com.example.accessingdatajpa.entities.Customer;
 import com.example.accessingdatajpa.repositories.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AccessingdatajpaApplication {
-
+    @Autowired
+    private CustomerRepository customerRepository;
     private static final Logger log = LoggerFactory.getLogger(AccessingdatajpaApplication.class);
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class AccessingdatajpaApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(CustomerRepository customerRepository) {
+    public CommandLineRunner demo() {
         return args -> {
             customerRepository.save(new Customer("Jackye","Chong"));
             customerRepository.save(new Customer("Dead", "Pool"));
